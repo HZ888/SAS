@@ -1,7 +1,7 @@
 ods listing close;
 ods graphics on;
 ods noresults;
-ods rtf file="C:\Users\nsouri\Dropbox (dementia team)\Statistical Analysis\Vladimir\Output_Effective Sample Size_&sysdate..rtf";
+ods rtf file="C:\Users\nsouri\Dropbox (dementia team)\Statistical Analysis\File..rtf";
 
 title1 'Effective Sample Size - Vladimir Grant';
 
