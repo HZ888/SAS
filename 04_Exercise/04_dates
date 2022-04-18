@@ -19,3 +19,8 @@ data duration;
 	format dat dat1 date9.;
 	duration=intck('day',dat,dat1)+1;  /*treatment duration for period 1*/
 run;
+
+proc sql;
+	select count(distinct usubjid) as dist  
+	from ex;
+quit;
