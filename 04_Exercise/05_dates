@@ -1,0 +1,9 @@
+data aaa;
+	set ds;
+	dscontyn2=strip(dscontyn);
+	if dscontyn2="Y"; /*randomized*/
+	dsdat2=scan(dsdat,1,'');
+	dsdat3=input(dsdat,yymmdd10.);
+	format dsdat3 date9.;
+	if '05Mar2027'd<=dsdat3<='04May2027'd; 
+run;
