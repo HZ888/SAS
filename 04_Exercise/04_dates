@@ -24,3 +24,11 @@ proc sql;
 	select count(distinct usubjid) as dist  
 	from ex;
 quit;
+
+proc sql;
+	create table therapy001 as
+	select distinct t.*, a.*
+	from cprd.therapy1 as t, statins.statincode as a
+	where t.product_code=a.prodcod
+	order by t.id;
+quit;
