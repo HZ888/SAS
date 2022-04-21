@@ -20,6 +20,23 @@ data duration;
 	duration=intck('day',dat,dat1)+1;  /*treatment duration for period 1*/
 run;
 
+
+length zip $ 5;
+zip = left(zip_char);
+
+
+/* Method 1: Concatenation Operator */
+data work.method_1;
+    set work.my_data;
+     new_var = "The" || Name || "costs: $" || Price;
+run;
+
+data work.method_2;
+    set work.my_data;
+     new_var = CAT("The", Name, "costs: $", Price);
+run;
+
+
 proc sql;
 	select count(distinct usubjid) as dist  
 	from ex;
@@ -71,3 +88,7 @@ FOOTNOTE;
 %mend contin_tab_2w;
 
 
+Proc Means data = test N NMISS NOLABELS;
+Class Age;
+Var q1 - q5;
+Run;
