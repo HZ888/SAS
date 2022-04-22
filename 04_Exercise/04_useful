@@ -88,7 +88,51 @@ FOOTNOTE;
 %mend contin_tab_2w;
 
 
+
+
+data wideagesex;
+	merge wideas1(rename=(agegFemale=FemaleP agegMale=MaleP))
+		wideas2(rename=(agegFemale=FemaleF agegMale=MaleF));
+	by ageg;
+	FemaleP_ =put(round(FemaleP,0.000001), 6.2);
+	MaleP_ =put(round(MaleP,0.000001), 6.2);
+	Female=compress(trim(FemaleF)) ||' ( '||compress(trim(FemaleP_))||'%)';
+	Male=compress(trim(MaleF)) ||' ( '||compress(trim(MaleP_))||'%)';
+	i=ageg;
+	keep i ageg Female Male;
+run;
+
+
+
 Proc Means data = test N NMISS NOLABELS;
 Class Age;
 Var q1 - q5;
 Run;
+
+ods output crossTabFreqs=output;
+proc freq data=aa ; table ageg*sex ;   run;
+
+proc sort data=output; by ageg;run;
+proc transpose data=output out=wideas prefix=ageg;
+	by ageg;
+	id sex;
+	var frequency colpercent;
+run;	
+	
+
+
+data aa;
+	set aa end=last;
+	w=1; output;
+	if last then do;
+				w=0;ethnic='NR';output; /*create 0 for 0%*/
+				w=0;ethnic='U';output; /*create 0 for 0%*/
+			end;
+run;
+
+proc freq data = aa;
+	tables ethnic / out=aa;  /* sex */
+	weight w/zero;
+run;
+
+proc means data=addm_bl2 p25 p50 p75 qrange; var age;run;
