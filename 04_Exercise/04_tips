@@ -136,3 +136,8 @@ proc freq data = aa;
 run;
 
 proc means data=addm_bl2 p25 p50 p75 qrange; var age;run;
+
+
+
+line @1 "  ^{super *} ^{style [font_weight=bold] MDC^{sub 1} }= 1.96*the square root of the number of measurements*standard error of the measurement(SEm)= 1.96*sqrt(4)*sd*sqrt(1-ICC) where SEm = baseline sd* sqrt(1 – ICC) ";
+
