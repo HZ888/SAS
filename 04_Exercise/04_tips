@@ -141,3 +141,27 @@ proc means data=addm_bl2 p25 p50 p75 qrange; var age;run;
 
 line @1 "  ^{super *} ^{style [font_weight=bold] MDC^{sub 1} }= 1.96*the square root of the number of measurements*standard error of the measurement(SEm)= 1.96*sqrt(4)*sd*sqrt(1-ICC) where SEm = baseline sd* sqrt(1 – ICC) ";
 
+
+
+%global r1 r2 r3 r4 M;
+
+%MACRO G_rn();
+%do i=1 %to 4;
+   proc sql noprint;
+   select count(distinct usubjid) into :r&i
+   from adsl_ITT
+   where region=&i;
+ quit;
+%end;  
+proc sql noprint;
+   select count(distinct usubjid) into :M
+   from adsl_ITT;
+quit;
+%MEND G_rn;
+
+%G_rn;
+%put &r1; 
+%put &r2;
+%put &r3;
+%put &r4;
+%put &M;
