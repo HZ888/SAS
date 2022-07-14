@@ -1,3 +1,8 @@
+data readin1;
+	set readin;
+	where Section is not missing;
+run;
+
 data aaa;
 	set ds;
 	dscontyn2=strip(dscontyn);
