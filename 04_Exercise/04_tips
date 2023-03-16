@@ -170,3 +170,10 @@ quit;
 %put &r3;
 %put &r4;
 %put &M;
+
+
+proc compare data=table1 compare=table2
+criterion=.01;
+run;
+
+proc sort data=adsl nodupkey out=adsl;    by _all_; run;
