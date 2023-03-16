@@ -172,8 +172,8 @@ quit;
 %put &M;
 
 
-proc compare data=table1 compare=table2
-criterion=.01;
+proc compare data=table1 compare=table2 criterion=.01; 
+  id X;
 run;
 
 proc sort data=adsl nodupkey out=adsl;    by _all_; run;
