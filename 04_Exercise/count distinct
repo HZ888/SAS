@@ -1,0 +1,2 @@
+/*missing values*/
+proc means data=XXX nmiss n;run;
