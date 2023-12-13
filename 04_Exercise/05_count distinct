@@ -2,3 +2,8 @@
 proc means data=XXX nmiss n;run;
 
 proc freq data=XXX; tables a*b;run;
+
+proc sql;
+  select count(distinct var1) as distinct_var1;
+  from XXX;
+quit;
