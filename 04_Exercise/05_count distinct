@@ -1,2 +1,4 @@
 /*missing values*/
 proc means data=XXX nmiss n;run;
+
+proc freq data=XXX; tables a*b;run;
